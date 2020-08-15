@@ -5,15 +5,17 @@ using System.Collections;
 public class PuntosJugador : MonoBehaviour
 {
     public AudioSource point;
+    public AudioSource win;
     public Text marcador;
     public Text terminaste;
+    private int numeroTotalItems = 20;
     int contador;
 
     void Awake()
     {
         contador = 0;
         ActualizarMarcador();
-        //terminaste.gameObject.SetActive(false);
+        terminaste.gameObject.SetActive(false);
         
     }
 
@@ -25,9 +27,10 @@ public class PuntosJugador : MonoBehaviour
         Destroy(other.gameObject);
         contador = contador + 1;
         ActualizarMarcador();
-        if(contador >= 13)
+        if(contador >= numeroTotalItems)
         {
-            //terminaste.gameObject.SetActive(true);
+            win.Play();
+            terminaste.gameObject.SetActive(true);
         }
     }
 
